@@ -1,66 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
+import "./InfoPage.css";
 
 const InfoPage = () => {
-    const [informations, setInformations] = useState([]);
+  const [information, setInformation] = useState([]);
 
-    useEffect( () => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then( res => res.json())
-        .then(data => setInformations(data))
-    } , [])
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setInformation(data));
+  }, []);
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const searchValue = e.target.searchInput.value;
-        const filterData = informations.filter(
-            (user) => 
-            user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-            user.email.toLowerCase().includes(searchValue.toLowerCase()) 
-        );
-        setInformations(filterData)
-    }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchValue = e.target.searchInput.value;
 
-    return (
-        <div>
-            <form onSubmit={handleSearch}>
-              <input type="text" name="searchInput" placeholder='search' id="" />
-              <input type="submit" value="submit" />
-          </form>
-          
-        <div className='table-responsive'>
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Company Name</th>
-      <th scope="col">Zipcode</th>
-    </tr>
-  </thead>
-  <tbody>
-
-
-     
-     {
-        informations.map(singleUser => <tr>
-
-            <td> {singleUser.id} </td>
-            <td> {singleUser.name} </td>
-            <td> {singleUser.email} </td>
-            <td> {singleUser.company?.name} </td>
-            <td> {singleUser.address?.zipcode} </td>
-           
-        </tr>)
-     }
-
-    
-  </tbody>
-</table>
-        </div>
-
-        </div>
+    const filterData = information.filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchValue.toLowerCase())
     );
+    setInformation(filterData);
+    e.target.reset();
+  };
+
+  return (
+    <div className="mt-4 pt-3">
+      
+      <form onSubmit={handleSearch}>
+        <input className="input-style" type="text" name="searchInput" placeholder="Type Name Or Email" id="" />
+        <input className="submit" type="submit" value="Submit" />
+      </form>
+
+
+<Table className="mt-5" responsive>
+      <thead>
+        <tr>
+         
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Company Name</th>
+          <th>Zipcode</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+          {information.map((singleUser) => (
+            <tr>
+              <td> {singleUser.id} </td>
+              <td> {singleUser.name} </td>
+              <td> {singleUser.email} </td>
+              <td> {singleUser.company?.name} </td>
+              <td> {singleUser.address?.zipcode} </td>
+            </tr>
+          ))}
+        </tbody>
+    </Table>
+    
+    </div>
+  );
 };
 
 export default InfoPage;

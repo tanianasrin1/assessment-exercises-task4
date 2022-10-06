@@ -1,0 +1,21 @@
+.table-style{
+    margin-top: 30px;
+    margin-left: 270px;
+    
+}
+
+.submit{
+    
+    background-color: orange;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 3px;
+    color: #FFFFFF;
+
+}
+
+.input-style{
+    height: 36px;
+    width: 50%;
+    margin-right: 20px;
+}
