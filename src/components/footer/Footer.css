@@ -1,0 +1,17 @@
+/**********************footer style */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+  }
+  .footer h4 {
+    margin: 24px 0;
+    font-size: 30px;
+  }
+  .icons .fab {
+    color: orange;
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+    font-size: 25px;
+  }
